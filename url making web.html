@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prem Deploy 🚀</title>
+<style>
+body {
+  background:#0f172a;
+  color:white;
+  text-align:center;
+  font-family:sans-serif;
+}
+.box {
+  border:2px dashed cyan;
+  padding:50px;
+  margin:50px;
+  border-radius:20px;
+}
+button {
+  padding:10px 20px;
+  background:cyan;
+  border:none;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚀 Prem Deploy (Live Hosting)</h1>
+
+<div class="box">
+<input type="file" id="file">
+<br><br>
+<button onclick="upload()">Deploy</button>
+</div>
+
+<p id="link"></p>
+
+<script>
+async function upload() {
+  const file = document.getElementById("file").files[0];
+  const reader = new FileReader();
+
+  reader.onload = async function() {
+    const content = btoa(reader.result);
+
+    const repo = "YOUR_USERNAME/prem-deploy-sites";
+    const filename = "site-" + Date.now() + ".html";
+
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/${filename}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": "token YOUR_GITHUB_TOKEN",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "deploy new site",
+        content: content
+      })
+    });
+
+    const url = `https://YOUR_PROJECT.pages.dev/${filename}`;
+    document.getElementById("link").innerHTML =
+      "Live URL: <a href='"+url+"' target='_blank'>"+url+"</a>";
+  };
+
+  reader.readAsBinaryString(file);
+}
+</script>
+
+</body>
+</html>
