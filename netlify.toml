@@ -1,28 +1,3 @@
 [build]
-  publish = "public"
-  functions = "netlify/functions"
-
-[[redirects]]
-  from = "/api/thumbnail"
-  to = "/.netlify/functions/thumbnail"
-  status = 200
-
-[[redirects]]
-  from = "/api/thumbnail/"
-  to = "/.netlify/functions/thumbnail"
-  status = 200
-
-[[redirects]]
-  from = "/api/config"
-  to = "/.netlify/functions/config"
-  status = 200
-
-[[redirects]]
-  from = "/api/history"
-  to = "/.netlify/functions/history"
-  status = 200
-
-[[redirects]]
-  from = "/api/admin"
-  to = "/.netlify/functions/admin"
-  status = 200
+  publish = "olx-marketplace"
+  functions = "olx-marketplace/netlify/functions"
