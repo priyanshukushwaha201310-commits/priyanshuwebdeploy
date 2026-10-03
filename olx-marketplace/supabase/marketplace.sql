@@ -123,5 +123,13 @@ drop policy if exists "users delete own listing images" on storage.objects;
 create policy "users delete own listing images" on storage.objects for delete to authenticated
 using (bucket_id='listing-images' and owner_id=auth.uid()::text);
 
--- Enable Realtime for chat messages
-alter publication supabase_realtime add table public.messages;
+-- Enable Realtime for chat messages (safe to run more than once)
+do $
+begin
+  if not exists (
+    select 1 from pg_publication_tables
+    where pubname='supabase_realtime' and schemaname='public' and tablename='messages'
+  ) then
+    alter publication supabase_realtime add table public.messages;
+  end if;
+end $;
