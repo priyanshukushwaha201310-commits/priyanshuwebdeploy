@@ -74,3 +74,44 @@ Then open the local URL printed by Netlify.
 ## Repository
 
 `priyanshukushwaha201310-commits/priyanshuwebdeploy`
+
+
+## Full-stack Supabase setup
+
+This version adds optional accounts, per-user thumbnail history, and an admin dashboard.
+
+### Required Netlify environment variables
+
+Set these in **Netlify → Project configuration → Environment variables**:
+
+- `SUPABASE_URL` — your Supabase project URL
+- `SUPABASE_PUBLISHABLE_KEY` — your Supabase publishable/anon key
+- `SUPABASE_SERVICE_ROLE_KEY` — your Supabase service-role key (**server only; never expose this to the browser**)
+
+### Database setup
+
+1. Open Supabase SQL Editor.
+2. Run `supabase/schema.sql`.
+3. Create a normal user through ThumbFetch.
+4. Promote that account to admin using the SQL comment at the bottom of the schema.
+5. Redeploy/reload the Netlify site.
+
+### New API flow
+
+- `/api/config` exposes only the public Supabase URL and publishable key.
+- `/api/history` validates the Supabase access token and stores/reads/deletes only the signed-in user's history.
+- `/api/admin` validates the access token, checks the server-side profile role, and uses the service-role key only inside the Netlify Function.
+
+The service-role key is never sent to the client.
+
+### Current full-stack features
+
+- Email/password signup and login
+- Session persistence through Supabase Auth
+- Per-user thumbnail history
+- Delete history items
+- Admin dashboard
+- User and recent-request statistics
+- Existing YouTube/Vimeo/Dailymotion thumbnail API preserved
+- No payment API or paid service required
+
