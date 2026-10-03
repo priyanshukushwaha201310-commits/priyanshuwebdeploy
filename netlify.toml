@@ -1,0 +1,13 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/thumbnail"
+  to = "/.netlify/functions/thumbnail"
+  status = 200
+
+[[redirects]]
+  from = "/api/thumbnail/"
+  to = "/.netlify/functions/thumbnail"
+  status = 200
