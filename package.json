@@ -1,0 +1,15 @@
+{
+  "name": "thumbnail-fetcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free video thumbnail fetcher with a Vercel serverless backend.",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "@vercel/node": "^5.4.0"
+  }
+}
