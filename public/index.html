@@ -6,11 +6,12 @@
   <meta name="description" content="Free video thumbnail fetcher for YouTube, Vimeo and Dailymotion.">
   <title>ThumbFetch — Free Thumbnail Fetcher</title>
   <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="topbar">
     <div class="brand"><span class="brand-dot"></span>ThumbFetch</div>
-    <a href="https://github.com/priyanshukushwaha201310-commits/priyanshuwebdeploy" target="_blank" rel="noreferrer">GitHub ↗</a>
+    <div class="top-actions"><button id="authBtn" class="ghost">Login / Sign up</button><a href="https://github.com/priyanshukushwaha201310-commits/priyanshuwebdeploy" target="_blank" rel="noreferrer">GitHub ↗</a></div>
   </header>
 
   <main>
@@ -27,6 +28,20 @@
         <button data-example="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Try YouTube example</button>
         <span>Supports YouTube • Vimeo • Dailymotion</span>
       </div>
+    </section>
+
+    <section id="account" class="result hidden">
+      <div class="result-head">
+        <div><div class="platform">ACCOUNT</div><h2 id="accountTitle">Your account</h2></div>
+        <button id="logoutBtn" class="ghost">Logout</button>
+      </div>
+      <p id="accountEmail" class="hint"></p>
+      <div class="actions">
+        <button id="historyBtn" class="secondary">Load my history</button>
+        <button id="adminBtn" class="secondary hidden">Admin dashboard</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+      <div id="adminPanel" class="hidden"></div>
     </section>
 
     <section id="result" class="result hidden">
@@ -48,6 +63,22 @@
     </section>
 
     <div id="error" class="error hidden"></div>
+
+    <div id="authModal" class="modal hidden">
+      <div class="modal-card">
+        <button id="closeAuth" class="modal-close">×</button>
+        <div class="platform">THUMBFETCH ACCOUNT</div>
+        <h2 id="authTitle">Login</h2>
+        <p id="authMessage" class="hint">Create an account to save thumbnail history.</p>
+        <form id="authForm">
+          <input id="authEmail" type="email" placeholder="Email" required>
+          <input id="authPassword" type="password" placeholder="Password (6+ characters)" minlength="6" required>
+          <input id="authName" class="hidden" type="text" placeholder="Display name">
+          <button id="authSubmit" class="primary" type="submit">Login</button>
+        </form>
+        <button id="authSwitch" class="modal-link">Need an account? Sign up</button>
+      </div>
+    </div>
 
     <section class="features">
       <article><strong>⚡ Fast</strong><span>Serverless API with no account required.</span></article>
