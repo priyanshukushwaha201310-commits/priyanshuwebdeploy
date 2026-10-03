@@ -1,3 +1,13 @@
 [build]
   publish = "olx-marketplace"
   functions = "olx-marketplace/netlify/functions"
+
+[[redirects]]
+  from = "/api/config"
+  to = "/.netlify/functions/config"
+  status = 200
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
+  status = 200
