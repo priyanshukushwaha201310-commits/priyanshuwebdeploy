@@ -1,22 +1,18 @@
-# MarketHub — OLX-style Netlify Test Model
+# MarketHub — Real Supabase + Netlify
 
-A Netlify-compatible marketplace prototype.
+This folder is a Netlify-compatible OLX-style marketplace connected to Supabase.
 
-## Included
-- Login/demo accounts
-- Create and delete listings
-- Search, category, price and location filters
-- Sorting
-- Favorites
-- Listing details
-- Buyer-to-seller demo chat
-- Admin dashboard demo
-- Responsive UI
-- Netlify Functions health endpoint
+## Supabase setup
+1. Create a Supabase project.
+2. Run `supabase/schema.sql` in the Supabase SQL Editor.
+3. Create Netlify environment variables:
+   - `SUPABASE_URL`
+   - `SUPABASE_PUBLISHABLE_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+4. Keep the service-role key server-side only.
+5. Deploy/redeploy on Netlify.
 
-## Deploy on Netlify
-Set the Netlify **Base directory** to `olx-marketplace`, then deploy this folder/repository.
+The database supports profiles, ads, favorites and participant-only realtime messages. Listing images use the `listing-images` Storage bucket.
 
-This version intentionally uses browser localStorage so it works immediately without a paid API or database. For a real public marketplace, replace storage/auth/chat with Supabase (database, Auth, Storage and Realtime), add moderation/rate limits, and keep secrets server-side.
-
-Admin demo: sign in with `admin@markethub.test`; for the prototype, the role can be enabled by changing the user object in localStorage if needed.
+## Important
+The current browser prototype remains usable without Supabase; the Supabase schema is the backend foundation. The next client wiring should use Supabase Auth, Database, Storage and Realtime.
