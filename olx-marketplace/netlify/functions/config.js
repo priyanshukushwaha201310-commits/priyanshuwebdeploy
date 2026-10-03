@@ -1,0 +1,1 @@
+exports.handler=async()=>({statusCode:200,headers:{"content-type":"application/json","cache-control":"no-store"},body:JSON.stringify({url:process.env.SUPABASE_URL||"",key:process.env.SUPABASE_PUBLISHABLE_KEY||process.env.SUPABASE_ANON_KEY||""})});
